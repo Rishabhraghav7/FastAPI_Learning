@@ -92,3 +92,27 @@ direct mapping with the parameter and the placeholder just make sure names are s
 @GetMapping("/path") is just replaced with 
 @app.get("/path") nothing much complex 
 
+SQL ALCHEMY 
+
+first we are creating a session using the sessionmaker() like using the connection in the JDBC 
+
+engine is like DriverManager 
+and the query is like preparedstatement in JDBC 
+
+ In SpringBoot we move to JDBC template or JDBC namedtemplate 
+replacing the plain JDBC and the connection and session creation is also not like this but in both namedtemplate and template we write query like :id , :name , :email but in python we just use functions like add() , etc directly and the query part is handled by the sqlalchemy 
+
+also we use the same DTO to carry the data till the repo and fetch it from the repo in python we use 2 DTO one for the carrying part and another is just a replica of the db structure and each time we convert from the 
+normal DTO -> DB replica DTO 
+
+This DB replica DTO extends a class called Base which is from the 
+
+```
+from sqlalchemy.ext.declarative import declarative_base
+base = declarative_base()
+```
+and once you extend this base the class object declaration becomes a little different 
+we use = replacing : 
+id : int is written like id = column( Integer , primary_key = true )
+here the data type follows like the SQL DB we use. 
+
