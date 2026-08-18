@@ -62,3 +62,33 @@ Controller class             →      controller module/file
 
 Spring Boot application      →      main.py
  ```
+
+PYDANTIC 
+
+This package is mainly used for data validation purpose also to parse data
+from this package import BaseModel 
+extend the the pojo / DTO / Model with this class this take care of the creation of the _ _init_ _ i.e the constructor part this also rises error when the parameters are not specified with correct values by default python is not as rigid as java with class declaration and data types for class members so pydantic helps here .
+
+@PATHVARIABLE
+
+```
+@GetMapping("/user/{id}")
+public String getUser(@PathVariable int id) {
+    return "User ID: " + id;
+}
+```
+
+in java we use a placeholder in the api path then map it to the function's parameter using the @PathVariable annotation but in python 
+
+```
+@app.get("user/{id}")
+def func(id:int):
+	return 
+```
+direct mapping with the parameter and the placeholder just make sure names are same .
+
+@GETMAPPING 
+
+@GetMapping("/path") is just replaced with 
+@app.get("/path") nothing much complex 
+
