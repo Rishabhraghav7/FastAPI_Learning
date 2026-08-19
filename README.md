@@ -115,4 +115,7 @@ and once you extend this base the class object declaration becomes a little diff
 we use = replacing : 
 id : int is written like id = column( Integer , primary_key = true )
 here the data type follows like the SQL DB we use. 
+for string data type we mention the size like Column(String(225))
 
+@id which we use for primary key reference in java is replaced with primary_key = True and it is parameter 
+ @Table(name ="Table name") is replaced with _ _tablenmae_ _ = "table name" 
