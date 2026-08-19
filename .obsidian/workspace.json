@@ -190,8 +190,16 @@
   },
   "active": "63b182dede56a373",
   "lastOpenFiles": [
-    "Database/__pycache__/Database.cpython-312.pyc",
-    "Database/__pycache__/DatabaseUsersDTO.cpython-312.pyc",
-    "Database/__pycache__"
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/licenses/LICENSE",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/WHEEL",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/top_level.txt",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/REQUESTED",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/RECORD",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/METADATA",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/licenses",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/INSTALLER",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/entry_points.txt",
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info",
+    "myenv/Scripts/email_validator.exe"
   ]
 }
