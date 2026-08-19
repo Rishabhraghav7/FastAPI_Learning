@@ -3,6 +3,7 @@ import repository.user_repository as repo
 from models.UsersDTO import UsersDTO
 import string
 from fastapi import HTTPException
+import security.passwordHashing as passwordHashing
 
 def validate_user(userDTO : LoginUserDTO):
     result =repo.findUser(userDTO.userName , userDTO.password)
@@ -36,6 +37,8 @@ def validate_new_user(user:UsersDTO):
             status_code=409,
             detail="This phone number is already in use"
         )
+    user.password = passwordHashing.hashPassword(user.password)
+    return repo.addNewUser(user)
 
 
 def userNameValidation(userName:str):
