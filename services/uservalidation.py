@@ -27,9 +27,15 @@ def validate_new_user(user:UsersDTO):
             status_code=409 , 
             detail="User already exists")
     if(repo.findUserByEmail(user.email)is not None):
-        return "This E-mail is already registered"
+        raise HTTPException(
+            status_code=409,
+            detail="This E-mail is already registered"
+        )
     if(repo.findUserByPhoneNumber(user.phoneNumber) is not None):
-        return "This phone number is already in use"
+        raise HTTPException(
+            status_code=409,
+            detail="This phone number is already in use"
+        )
 
 
 def userNameValidation(userName:str):
