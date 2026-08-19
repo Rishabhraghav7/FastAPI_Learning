@@ -2,12 +2,12 @@ from sqlalchemy import select
 from Database.Database import session
 from Database.DatabaseUsersDTO import userDTO
 
-def findUser(userName :str , password: str):
-    db = session()
-    result = db.execute(
-        select(userDTO).where (userDTO.userName == userName , userDTO.password == password)
-        )
-    return result.scalar_one_or_none()
+# def findUser(userName :str , password: str):
+#     db = session()
+#     result = db.execute(
+#         select(userDTO).where (userDTO.userName == userName , userDTO.password == password)
+#         )
+#     return result.scalar_one_or_none()
 
 def findUserByName(userName : str):
     db = session()

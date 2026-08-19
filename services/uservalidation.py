@@ -4,14 +4,35 @@ from models.UsersDTO import UsersDTO
 import string
 from fastapi import HTTPException
 import security.passwordHashing as passwordHashing
+from argon2.exceptions import VerifyMismatchError
 
 def validate_user(userDTO : LoginUserDTO):
-    result =repo.findUser(userDTO.userName , userDTO.password)
-    if result is None:
-        return "Invalid username or password"
-    else:
-        return "Login sucessfull"
+    result = repo.findUserByName(userDTO.userName)
 
+    if result is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid user name or password"
+        )
+    else:
+        loginUser = LoginUserDTO(
+            userName=result.userName,
+            password=result.password
+        )
+        try:
+            isSamePasswrod=passwordHashing.checkHashedPassword(userDTO.password,loginUser.password)
+            if (isSamePasswrod):
+                return "login sucessful"
+            # else:
+            #     raise HTTPException(
+            #         status_code=401,
+            #         detail="Invalid password"
+            #     )
+        except VerifyMismatchError: 
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid password"
+            )
 
 def validate_new_user(user:UsersDTO):
     error = userNameValidation(user.userName)

@@ -14,4 +14,4 @@ def hashPassword(password:str):
     return passwordHashing.hasher.hash(password)
 
 def checkHashedPassword(password:str , hashedPassword : str):
-    return passwordHashing.hasher.verify(password,hashedPassword)
+    return passwordHashing.hasher.verify(hashedPassword,password)
