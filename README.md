@@ -69,7 +69,7 @@ This package is mainly used for data validation purpose also to parse data
 from this package import BaseModel 
 extend the the pojo / DTO / Model with this class this take care of the creation of the _ _init_ _ i.e the constructor part this also rises error when the parameters are not specified with correct values by default python is not as rigid as java with class declaration and data types for class members so pydantic helps here .
 
-@PATHVARIABLE
+@PATHVARIABLE & @PARAMBODY
 
 ```
 @GetMapping("/user/{id}")
@@ -86,6 +86,8 @@ def func(id:int):
 	return 
 ```
 direct mapping with the parameter and the placeholder just make sure names are same .
+
+nothing called parambody just direct mapping.
 
 @GETMAPPING 
 
@@ -119,3 +121,38 @@ for string data type we mention the size like Column(String(225))
 
 @id which we use for primary key reference in java is replaced with primary_key = True and it is parameter 
  @Table(name ="Table name") is replaced with _ _tablenmae_ _ = "table name" 
+
+HTTPException
+
+instead of using try catch and returning the error as a dict type use this 
+it has parameter status_code used to return the desired one , 
+detail= the error message you would like to return or the data,
+not yet used (headers = when you need to pass additional info like info on bearer tokens , rate limiting , retry timings. )
+
+Password Hashing 
+
+Used Argon2 to hash the password 
+```
+from argon2 import PasswordHasher
+
+class passwordHashing:
+    hasher = PasswordHasher(
+        time_cost=3,
+        memory_cost=65536,
+        parallelism=4,
+        hash_len=32,
+        salt_len=16
+    )
+```
+
+time_cost -> how many cycles to repeat the process
+memory_cost -> in KIB how much memory to allocate 
+parallelism -> how many threads to run dividing the process
+hash_len -> lenght of password = 32 * 8 = 256 bits
+salt_len -> random character added so that db allows same password = 16 * 8 = 128 bits 
+
+to hash password use .hash(password)
+to verify use .verify(hashed_password, password ) 
+don't hash the password and then check with hashed_password since each time salt value changes it creates new hash value and they never are true just use .verify()
+
+
