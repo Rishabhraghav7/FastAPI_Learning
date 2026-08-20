@@ -5,6 +5,7 @@ import string
 from fastapi import HTTPException
 import security.passwordHashing as passwordHashing
 from argon2.exceptions import VerifyMismatchError
+from artemisBroker.producer import produceMessage
 
 def validate_user(userDTO : LoginUserDTO):
     result = repo.findUserByName(userDTO.userName)
@@ -22,7 +23,10 @@ def validate_user(userDTO : LoginUserDTO):
         try:
             isSamePasswrod=passwordHashing.checkHashedPassword(userDTO.password,loginUser.password)
             if (isSamePasswrod):
-                return "login sucessful"
+                raise HTTPException(
+                    status_code=200,
+                    detail="login sucessful"
+                )
             # else:
             #     raise HTTPException(
             #         status_code=401,
@@ -34,7 +38,7 @@ def validate_user(userDTO : LoginUserDTO):
                 detail="Invalid password"
             )
 
-def validate_new_user(user:UsersDTO):
+def validateNewUser(user:UsersDTO):
     error = userNameValidation(user.userName)
     if(error):
         return error
@@ -97,3 +101,19 @@ def phoneNumberValidation(phone: str):
     elif(not(phone.isdigit())):
         result = "The phone number can contain only numbers"
     return result
+
+def forgetPasswordValidation(email:str):
+    emailExists = repo.findUserByEmail(email)
+    if emailExists is None:
+        raise HTTPException(
+            status_code=404,
+            detail="This Email is not registered"
+        )
+    try:
+        produceMessage(email)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+    return {"message":"message sent to queue"}

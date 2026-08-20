@@ -190,6 +190,7 @@
   },
   "active": "63b182dede56a373",
   "lastOpenFiles": [
+    "services/emailService.py",
     "security/__pycache__/passwordHashing.cpython-312.pyc",
     "security/__pycache__",
     "security/passwordHashing.py",
@@ -199,7 +200,6 @@
     "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/top_level.txt",
     "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/REQUESTED",
     "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/RECORD",
-    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/METADATA",
-    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/licenses"
+    "myenv/Lib/site-packages/email_validator-2.3.0.dist-info/METADATA"
   ]
 }
