@@ -6,6 +6,7 @@ def funct()
 	return 
 ```
 all under main.py
+
 an application object is created 
 this app holds the application a kind of reference allows to be used with methods like get etc 
 
