@@ -3,9 +3,9 @@ from artemisBroker.producer import producer
 from services.emailService import sendEmail
 
 class consumer(stomp.ConnectionListener):
-    def onMessage(self , frame):
-        print("Message recived")
-        print(frame.body)
+    def on_message(self , frame):
+        # print("Message recived")
+        # print(frame.body)
         email = frame.body
         sendEmail(email)
 

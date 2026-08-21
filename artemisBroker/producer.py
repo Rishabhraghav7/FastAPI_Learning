@@ -21,6 +21,7 @@ def produceMessage(email:str):
         destination=producer.queueName,
         body=email
     )
+        
    except:
        raise HTTPException(
            status_code=500,
