@@ -1,24 +1,25 @@
 import stomp
 from fastapi import HTTPException
-class producer:
-    artemisUserName = "rishabh"
-    artemisPassword = "rishabh"
-    artemisPort = 61613
-    artemisHost = "localhost"
-    queueName = "newEmailQueue"
+from brokerConfig import brokerConfig as artemis
+# class producer:
+#     artemisUserName = "rishabh"
+#     artemisPassword = "rishabh"
+#     artemisPort = 61613
+#     artemisHost = "localhost"
+#     queueName = "newEmailQueue"
 
 
 def produceMessage(email:str):
-   connection = stomp.Connection12([(producer.artemisHost, producer.artemisPort)])
-#    connection = stomp.Connection12([producer.artemisHost, producer.artemisPort])
+   connection = stomp.Connection12([(artemis.artemisHost, artemis.artemisPort)])
+#    connection = stomp.Connection12([producer.artemisHost, producer.artemisPort])\
    connection.connect(
-       producer.artemisUserName,
-       producer.artemisPassword,
+       artemis.artemisUserName,
+       artemis.artemisPassword,
        wait=True
    )
    try:
         connection.send(
-        destination=producer.queueName,
+        destination=artemis.queueName,
         body=email
     )
         

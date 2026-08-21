@@ -1,5 +1,5 @@
 import stomp
-from artemisBroker.producer import producer
+from brokerConfig import brokerConfig as artemis
 from services.emailService import sendEmail
 
 class consumer(stomp.ConnectionListener):
@@ -10,11 +10,11 @@ class consumer(stomp.ConnectionListener):
         sendEmail(email)
 
 
-connection = stomp.Connection12([producer.artemisHost, producer.artemisPort])
+connection = stomp.Connection12([artemis.artemisHost, artemis.artemisPort])
 connection.set_listener("",consumer())
 
-connection.connect(producer.artemisUserName,producer.artemisPassword, wait=True)
-connection.subscribe(destination=producer.queueName, id =1 , ack= "auto")
+connection.connect(artemis.artemisUserName,artemis.artemisPassword, wait=True)
+connection.subscribe(destination=artemis.queueName, id =1 , ack= "auto")
 
 try:
     while True:
